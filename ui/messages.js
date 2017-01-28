@@ -48,7 +48,7 @@ module.exports = event => {
       app.dock.bounce()
       win.once('focus', () => app.dock.setBadge(''))
     }
-    if (event.user_id === 120914 || event.user_id === 161943) {
+    if (event.user_id === 120914) {
       const meta = getMeta(event.content)
       if (meta) {
         const notif = new window.Notification('SmokeDetector Report', {
