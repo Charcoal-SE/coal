@@ -1,0 +1,53 @@
+module.exports = () => {
+  /* eslint-disable */
+  // https://github.com/Charcoal-SE/Userscripts/blob/bcad82/gas-mask-se.user.js
+  // @name          Unofficial Stack Exchange gas mask
+  // @description   A mission-critical tool when exploring the deepest depths of Stack Exchange.
+  // @description   Automatically hides images from new users.
+  // @version       1.3
+
+  if(true || location.search.indexOf("smokeypost=true") !== -1){
+    var style = document.createElement("style");
+    style.textContent = ".post-text img:not(.gasmask-treated){visibility:hidden}" +
+    ".post-text img{cursor:pointer}";
+    document.head.append(style);
+
+    var timer = setInterval(function(){
+      if(document.readyState === "complete") clearInterval(timer);
+      var newImgs = document.querySelectorAll(".post-text img:not(.gasmask-treating)");
+      [].forEach.call(newImgs, function(img){
+        var post = img;
+        while(!post.classList.contains("postcell") && !post.classList.contains("answercell")) post = post.parentElement;
+        var repElem = post.querySelector(".post-signature:last-child .reputation-score");
+        if(repElem.textContent === "1"){
+          var origSrc = img.src;
+          img.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Gas_mask.svg/200px-Gas_mask.svg.png";
+          img.addEventListener("click", function handler(event){
+            img.src = origSrc;
+            img.removeEventListener("click", handler);
+            event.preventDefault();
+          });
+          img.classList.add("gasmask-treating");
+          setTimeout(function(){
+            img.classList.add("gasmask-treated");
+          }, 1000);
+        } else {
+          img.classList.add("gasmask-treating", "gasmask-treated");
+        }
+      });
+    }, 100);
+  }
+
+  // https://github.com/Charcoal-SE/Userscripts/blob/bcad82/hideads.user.js
+  // @name        Hide ads
+  // @description Hides advertisements so that the flag link doesn't jump while loading the page
+  // @version     1
+  var link = window.document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = 'data:text/css,' +
+              // Selectors start here
+              '.adzerk-vote { display: none; }'
+  document.getElementsByTagName("HEAD")[0].appendChild(link);
+  /* eslint-enable */
+}
