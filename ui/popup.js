@@ -1,4 +1,5 @@
 const _runInWindow = () => {
+  // run in the context of the opened window.
   const f = $ => {
     if (!window.location.hash.length) {
       // Q
@@ -24,6 +25,4 @@ module.exports = message => {
   const _w = window.open(message.url)
   _w.eval(`(${_runInWindow})()`)
   _w.eval(`(${addUserScripts})()`)
-  window._w = _w
-  window._runInWindow = _runInWindow
 }
