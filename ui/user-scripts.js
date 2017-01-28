@@ -37,17 +37,5 @@ module.exports = () => {
       });
     }, 100);
   }
-
-  // https://github.com/Charcoal-SE/Userscripts/blob/bcad82/hideads.user.js
-  // @name        Hide ads
-  // @description Hides advertisements so that the flag link doesn't jump while loading the page
-  // @version     1
-  var link = window.document.createElement('link');
-  link.rel = 'stylesheet';
-  link.type = 'text/css';
-  link.href = 'data:text/css,' +
-              // Selectors start here
-              '.adzerk-vote { display: none; }'
-  document.getElementsByTagName("HEAD")[0].appendChild(link);
   /* eslint-enable */
 }
