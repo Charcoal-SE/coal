@@ -41,6 +41,17 @@ function getMeta (message) {
 }
 const win = require('electron').remote.getCurrentWindow()
 const app = require('electron').remote.app
+const Notification = window.Notification
+
+let guard = false
+window.updateNotificationAvailablity = () => {
+  window.Notification = JSON.parse(window.localStorage.disableNotifications || false) ? null : window.Notification
+  if (!guard) window.location.reload()
+}
+guard = true
+window.updateNotificationAvailablity()
+guard = false
+
 module.exports = event => {
   if (event.event_type === EVENTS.messagePosted) {
     if (!win.isFocused()) {
@@ -51,7 +62,7 @@ module.exports = event => {
     if (event.user_id === 120914) {
       const meta = getMeta(event.content)
       if (meta) {
-        const notif = new window.Notification('SmokeDetector Report', {
+        const notif = new Notification('SmokeDetector Report', {
           body: `${meta.site}: ${meta.reasons.join(', ')}`
         })
         notif.addEventListener('click', () => {
