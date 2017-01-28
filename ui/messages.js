@@ -26,7 +26,7 @@ const EVENTS = {
   userNameChanged: 34
 }
 function getMeta (message) {
-  const matches = /\[ <a[^>]+>SmokeDetector<\/a> \| <a[^>]+>MS<\/a> ] ([^:]+): <a href="([^"]+)">.+?<\/a> by <a href="[^"]+\/u\/(\d+)">.+?<\/a> on <code>([^<]+)<\/code>/.exec(message)
+  const matches = /\[ <a[^>]+>SmokeDetector<\/a>(?: \| <a[^>]+>MS<\/a>)? ] ([^:]+): <a href="([^"]+)">.+?<\/a> by <a href="[^"]+\/u\/(\d+)">.+?<\/a> on <code>([^<]+)<\/code>/.exec(message)
   if (!matches) {
     return null
   }
