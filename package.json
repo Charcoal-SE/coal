@@ -2,6 +2,7 @@
   "name": "coal",
   "version": "0.1.0",
   "description": "Watches Charcoal HQ",
+  "main": "main.js",
   "scripts": {
     "start": "electron .",
     "test": "standard"
