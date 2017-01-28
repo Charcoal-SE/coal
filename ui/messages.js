@@ -41,8 +41,15 @@ class SmokeyMessage {
   }
 }
 window._sm = SmokeyMessage
+const win = require('electron').remote.getCurrentWindow()
+const app = require('electron').remote.app
 module.exports = event => {
   if (event.event_type === EVENTS.messagePosted) {
+    if (!win.isFocused()) {
+      app.dock.setBadge((+app.dock.getBadge()) + 1 + '')
+      app.dock.bounce()
+      win.once('focus', () => app.dock.setBadge(''))
+    }
     if (event.user_id === 120914 || event.user_id === 161943) {
       try {
         const message = new SmokeyMessage(event.content)
@@ -53,7 +60,7 @@ module.exports = event => {
           require('./popup')(message)
         })
       } catch (e) {
-        console.warn(e)
+        console.log('Bad message', e)
       }
     }
   }
