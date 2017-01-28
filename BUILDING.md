@@ -5,3 +5,5 @@
 5. Sign into SE in the window that pops up
 6. Due to a bug, probably in SE code, you’ll end up at stackexchange.com. It’s easiest to quit the app and start it again with `npm start` to end up at Charcoal.
 7. Enjoy!
+
+Some features don’t have a UI yet. In the console (open it with Ctrl+Shift+I or Cmd+Opt+I), you’ll see instructions for using these.
