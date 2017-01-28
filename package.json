@@ -1,8 +1,7 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
-  "main": "main.js",
+  "name": "coal",
+  "version": "0.0.0",
+  "description": "Watches Charcoal HQ",
   "scripts": {
     "start": "electron .",
     "test": "standard"
