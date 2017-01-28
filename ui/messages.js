@@ -25,22 +25,20 @@ const EVENTS = {
   userMerged: 30,
   userNameChanged: 34
 }
-class SmokeyMessage {
-  constructor (message) {
-    const re = /\[ <a[^>]+>SmokeDetector<\/a> \| <a[^>]+>MS<\/a> ] ([^:]+): <a href="([^"]+)">.+?<\/a> by <a href="[^"]+\/u\/(\d+)">.+?<\/a> on <code>([^<]+)<\/code>/
-    if (!re.exec(message)) {
-      window._re = re
-      window._message = message
-    }
-    const [ _unused, reasons, url, userId, site ] = re.exec(message)
-    _unused
-    this.url = url
-    this.userId = userId
-    this.reasons = reasons.split(', ')
-    this.site = site
+function getMeta (message) {
+  const matches = /\[ <a[^>]+>SmokeDetector<\/a> \| <a[^>]+>MS<\/a> ] ([^:]+): <a href="([^"]+)">.+?<\/a> by <a href="[^"]+\/u\/(\d+)">.+?<\/a> on <code>([^<]+)<\/code>/.exec(message)
+  if (!matches) {
+    return null
+  }
+  matches.shift()
+  const [ reasons, url, userId, site ] = matches
+  return {
+    url,
+    userId,
+    reasons: reasons.split(', '),
+    site
   }
 }
-window._sm = SmokeyMessage
 const win = require('electron').remote.getCurrentWindow()
 const app = require('electron').remote.app
 module.exports = event => {
@@ -51,16 +49,16 @@ module.exports = event => {
       win.once('focus', () => app.dock.setBadge(''))
     }
     if (event.user_id === 120914 || event.user_id === 161943) {
-      try {
-        const message = new SmokeyMessage(event.content)
+      const meta = getMeta(event.content)
+      if (meta) {
         const notif = new window.Notification('SmokeDetector Report', {
-          body: `${message.site}: ${message.reasons.join(', ')}`
+          body: `${meta.site}: ${meta.reasons.join(', ')}`
         })
         notif.addEventListener('click', () => {
-          require('./popup')(message)
+          require('./popup')(meta)
         })
-      } catch (e) {
-        console.log('Bad message', e)
+      } else {
+        console.log('Bad message', event.content)
       }
     }
   }
