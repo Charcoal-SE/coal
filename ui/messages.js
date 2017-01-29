@@ -43,7 +43,9 @@ const win = require('electron').remote.getCurrentWindow()
 const app = require('electron').remote.app
 const Notification = window.Notification
 
-window.Notification = window.localStorage.disableNotifications ? null : window.Notification
+setTimeout(() => {
+  window.Notification = window.localStorage.disableNotifications ? null : window.Notification
+})
 console.log('Hi! If you don’t want desktop notifications from replies, set `localStorage.disableNotifications` to a non-empty string and reload (Cmd+R/Ctrl+R).')
 
 module.exports = event => {
