@@ -1,6 +1,19 @@
 const handle = require('./messages')
 
-const roomId = +window.location.href.match(/\/rooms\/(\d+)\//)[1]
+let roomId
+setTimeout(() => {
+  roomId = +window.location.href.match(/\/rooms\/(\d+)\//)[1]
+  const { shell } = require('electron')
+  // open links externally by default
+  window.addEventListener('load', () => {
+    window.jQuery(document).on('click', 'a[href]', function (event) {
+      if (!event.isDefaultPrevented()) {
+        event.preventDefault()
+        shell.openExternal(this.href)
+      }
+    })
+  })
+})
 
 const init = (ws) => {
   ws.addEventListener('message', ({ data }) => {
@@ -13,15 +26,6 @@ const init = (ws) => {
     }
   })
 }
-
-const { shell } = require('electron')
-// open links externally by default
-window.addEventListener('load', () => {
-  window.jQuery(document).on('click', 'a[href^="http"]', function (event) {
-    event.preventDefault()
-    shell.openExternal(this.href)
-  })
-})
 
 const _ws = window.WebSocket
 window.WebSocket = function WebSocket (...args) {
