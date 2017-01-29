@@ -1,6 +1,7 @@
 module.exports = () => {
   /* eslint-disable */
   // https://github.com/Charcoal-SE/Userscripts/blob/bcad82/gas-mask-se.user.js
+  // Modified: use the actual SVG.
   // @name          Unofficial Stack Exchange gas mask
   // @description   A mission-critical tool when exploring the deepest depths of Stack Exchange.
   // @description   Automatically hides images from new users.
@@ -21,7 +22,7 @@ module.exports = () => {
         var repElem = post.querySelector(".post-signature:last-child .reputation-score");
         if(repElem.textContent === "1"){
           var origSrc = img.src;
-          img.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Gas_mask.svg/200px-Gas_mask.svg.png";
+          img.src = "https://upload.wikimedia.org/wikipedia/commons/5/57/Gas_mask.svg";
           img.addEventListener("click", function handler(event){
             img.src = origSrc;
             img.removeEventListener("click", handler);
