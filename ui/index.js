@@ -14,6 +14,15 @@ const init = (ws) => {
   })
 }
 
+const { shell } = require('electron')
+// open links externally by default
+window.addEventListener('load', () => {
+  window.jQuery(document).on('click', 'a[href^="http"]', function (event) {
+    event.preventDefault()
+    shell.openExternal(this.href)
+  })
+})
+
 const _ws = window.WebSocket
 window.WebSocket = function WebSocket (...args) {
   const ws = new _ws(...args)
