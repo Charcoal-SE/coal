@@ -12,5 +12,11 @@
   "devDependencies": {
     "electron": "^1.4.0",
     "standard": "^8.6.0"
+  },
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "jquery": "^3.1.1",
+    "mutexify": "^1.1.0",
+    "ora": "^1.1.0"
   }
 }

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Flag Status</title>
+    <style media="screen">
+      body {
+        margin: 0;
+      }
+      .title-bar {
+        -webkit-app-region: drag;
+        height: 23px;
+        border-bottom: 1px solid #7E7E7E;
+        border-top: 1px solid #F6F6F6;
+        background: linear-gradient(to bottom, #EBEBEB, #D3D3D3);
+        border-radius: 5px 5px 0 0;
+        box-sizing: border-box;
+      }
+      .container {
+        display: inline-block;
+        font-family: sans-serif;
+        transition: transform 0.4s;
+        transform-origin: center 0;
+        transform: scaleY(-1);
+        margin-top: -2em;
+      }
+      #check:not(:checked) ~ .container {
+        transform: rotateX(90deg) scaleY(-1);
+      }
+      .dropdown {
+        margin-top: 40em;
+      }
+      .item {
+        transform: scaleY(-1);
+        margin: -1px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        position: relative;
+        border: 1px solid #ccc;
+        word-break: break-word;
+        background: white;
+        height: 2em;
+        padding-right: 1em;
+      }
+      .item * {
+        z-index: 1;
+      }
+      .progress {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        background: #F0F0F0;
+        z-index: 0
+      }
+      .box {
+        font-size: 10px;
+        line-height: 15px;
+        display: inline-block;
+      }
+      img {
+        height: 2em;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="checkbox" id="check" checked style="display: none;">
+    <div class="dropdown"><label for="check">Flag status</label></div>
+    <div class="container">
+      <div class="item">
+        <div class="progress" style=""></div>
+        <span class="box"><img> <span class="name">Loading…</span> <span class="stats"></span></span>
+      </div>
+    </div>
+    <script>
+      const $ = require('jquery')
+      const $tmpl = $('.item')
+      window.init = (data) => {
+        window._data = data
+        $tmpl.remove()
+        for (const { flagCount, usedFlags, icon, profileURL, siteName } of data) {
+          const $el = $tmpl.clone()
+          $el.find('img').attr('src', icon)
+          $el.find('.name').text(siteName)
+          $el.find('.progress').css('width', (flagCount - usedFlags) / flagCount * 100 + '%')
+          $el.find('.stats').text(`${usedFlags}/${flagCount} used`)
+          $el.appendTo($('.container'))
+        }
+      }
+      init(JSON.parse(`[{"usedFlags":4,"flagCount":32,"siteName":"Stack Overflow","profileURL":"http://stackoverflow.com/users/5244995/","icon":"https://cdn.sstatic.net/Sites/stackoverflow/img/icon-48.png","hidden":false},{"usedFlags":0,"flagCount":10,"siteName":"Meta Stack Exchange","profileURL":"http://meta.stackexchange.com/users/303707/","icon":"https://meta.stackexchange.com/content/Sites/stackexchangemeta/img/icon-48.png","hidden":false},{"usedFlags":0,"flagCount":10,"siteName":"Programming Puzzles & Code Golf","profileURL":"http://codegolf.stackexchange.com/users/44689/","icon":"https://cdn.sstatic.net/Sites/codegolf/img/icon-48.png","hidden":false},{"usedFlags":0,"flagCount":10,"siteName":"Stack Apps","profileURL":"http://stackapps.com/users/34727/","icon":"https://cdn.sstatic.net/Sites/stackapps/img/icon-48.png","hidden":false},{"usedFlags":0,"flagCount":10,"siteName":"Blender","profileURL":"http://blender.stackexchange.com/users/18550/","icon":"https://cdn.sstatic.net/Sites/blender/img/icon-48.png?v=f5a02f85db94","hidden":false},{"usedFlags":0,"flagCount":10,"siteName":"Ask Different","profileURL":"http://apple.stackexchange.com/users/147923/","icon":"https://cdn.sstatic.net/Sites/apple/img/icon-48.png","hidden":false},{"usedFlags":0,"flagCount":10,"siteName":"User Experience","profileURL":"http://ux.stackexchange.com/users/76035/","icon":"https://cdn.sstatic.net/Sites/ux/img/icon-48.png","hidden":true},{"usedFlags":1,"flagCount":10,"siteName":"Academia","profileURL":"http://academia.stackexchange.com/users/68393/","icon":"https://cdn.sstatic.net/Sites/academia/img/icon-48.png","hidden":true},{"usedFlags":1,"flagCount":10,"siteName":"Arqade","profileURL":"http://gaming.stackexchange.com/users/178241/","icon":"https://cdn.sstatic.net/Sites/gaming/img/icon-48.png?v=f5a02f85db94","hidden":true},{"usedFlags":0,"flagCount":10,"siteName":"Worldbuilding","profileURL":"http://worldbuilding.stackexchange.com/users/32816/","icon":"https://cdn.sstatic.net/Sites/worldbuilding/img/icon-48.png","hidden":true},{"usedFlags":0,"flagCount":10,"siteName":"Software Recommendations","profileURL":"http://softwarerecs.stackexchange.com/users/24464/","icon":"https://cdn.sstatic.net/Sites/softwarerecs/img/icon-48.png","hidden":true},{"usedFlags":0,"flagCount":10,"siteName":"Personal Finance & Money","profileURL":"http://money.stackexchange.com/users/52824/","icon":"https://cdn.sstatic.net/Sites/money/img/icon-48.png","hidden":true},{"usedFlags":2,"flagCount":10,"siteName":"Super User","profileURL":"http://superuser.com/users/691079/","icon":"https://cdn.sstatic.net/Sites/superuser/img/icon-48.png","hidden":true},{"usedFlags":0,"flagCount":10,"siteName":"Anime & Manga","profileURL":"http://anime.stackexchange.com/users/30592/","icon":"https://cdn.sstatic.net/Sites/anime/img/icon-48.png","hidden":true},{"usedFlags":1,"flagCount":10,"siteName":"Webmasters","profileURL":"http://webmasters.stackexchange.com/users/74387/","icon":"https://cdn.sstatic.net/Sites/webmasters/img/icon-48.png","hidden":false},{"usedFlags":6,"flagCount":10,"siteName":"Arduino","profileURL":"http://arduino.stackexchange.com/users/30444/","icon":"https://cdn.sstatic.net/Sites/arduino/img/icon-48.png?v=f5a02f85db94","hidden":true}]`))
+    </script>
+  </body>
+</html>
