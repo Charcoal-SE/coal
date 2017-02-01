@@ -24,6 +24,7 @@ setTimeout(() => {
         top: 0
       }).text('Open MetaSmoke').click(openMetaSmoke)
     )
+    $('head').append($('<style>').text(require('./styles')))
     let _ms
     function openMetaSmoke () {
       if (!_ms) {
