@@ -11,7 +11,7 @@ module.exports = () => {
     var style = document.createElement("style");
     style.textContent = ".post-text img:not(.gasmask-treated){visibility:hidden}" +
     ".post-text img{cursor:pointer}";
-    document.head.append(style);
+    document.head.appendChild(style);
 
     var timer = setInterval(function(){
       if(document.readyState === "complete") clearInterval(timer);
