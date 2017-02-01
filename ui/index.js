@@ -18,10 +18,13 @@ setTimeout(() => {
       $('<a>').addClass('button').text('metasmoke').click(openMetaSmoke)
     )
     $('.mob #header .variant').filter('.default, .select-message').find('.left').append(
-      $('<button>').addClass('title navigational').css({
+      $('<button>').addClass('title').css({
         fontWeight: 'normal',
         position: 'absolute',
-        top: 0
+        top: 0,
+        border: 'none',
+        background: 'transparent',
+        color: 'white'
       }).text('Open MetaSmoke').click(openMetaSmoke)
     )
     $('head').append($('<style>').text(require('./styles')))
