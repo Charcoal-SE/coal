@@ -1,4 +1,4 @@
-const _runInWindow = $ => {
+const clickFlagLink = $ => {
   // run in the context of the opened window.
   if (!window.location.hash.length) {
     // Q
@@ -25,6 +25,6 @@ const onLoad = (f) => (() => {
 const addUserScripts = require('./user-scripts')
 module.exports = url => {
   const _w = window.open(url)
-  _w.eval(`(${onLoad(_runInWindow)})()`)
   _w.eval(`(${onLoad(addUserScripts)})()`)
+  _w.eval(`(${onLoad(clickFlagLink)})()`)
 }
