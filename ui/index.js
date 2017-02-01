@@ -4,14 +4,27 @@ let roomId
 setTimeout(() => {
   roomId = +window.location.href.match(/\/rooms\/(\d+)\//)[1]
   const { shell } = require('electron')
-  // open links externally by default
   window.addEventListener('load', () => {
-    window.jQuery(document).on('click', 'a[href]', function (event) {
+    const $ = window.jQuery
+    // open links externally by default
+    $(document).on('click', 'a[href]', function (event) {
       if (!event.isDefaultPrevented()) {
         event.preventDefault()
         shell.openExternal(this.href)
       }
     })
+    // metasmoke popup
+    $('.fl').append(
+      $('<a>').addClass('button').text('metasmoke').click(openMetaSmoke)
+    )
+    let _ms
+    function openMetaSmoke () {
+      if (!_ms) {
+        _ms = window.open('https://metasmoke.erwaysoftware.com')
+      } else {
+        _ms.focus()
+      }
+    }
   })
 })
 
