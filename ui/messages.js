@@ -64,7 +64,7 @@ module.exports = event => {
           body: `${meta.site}: ${meta.reasons.join(', ')}`
         })
         notif.addEventListener('click', () => {
-          require('./popup')(meta)
+          require('./popup')(meta.url)
         })
       } else {
         console.log('Bad message', event.content)

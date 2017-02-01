@@ -13,19 +13,18 @@ const _runInWindow = $ => {
     }
   }
 }
-const onLoad = (f) => {
-  return String(() => {
-    const _f = $$f // eslint-disable-line
-    if (document.readyState === 'complete') {
-      _f(window.jQuery)
-    } else {
-      window.jQuery(window).on('load', _f)
-    }
-  }).replace('$$f', f)
-}
+const onLoad = (f) => (() => {
+  const _f = $$f // eslint-disable-line
+  if (document.readyState === 'complete') {
+    _f(window.jQuery)
+  } else {
+    window.jQuery(window).on('load', _f)
+  }
+}).toString().replace('$$f', String(f))
+
 const addUserScripts = require('./user-scripts')
-module.exports = message => {
-  const _w = window.open(message.url)
+module.exports = url => {
+  const _w = window.open(url)
   _w.eval(`(${onLoad(_runInWindow)})()`)
   _w.eval(`(${onLoad(addUserScripts)})()`)
 }
