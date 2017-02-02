@@ -1,3 +1,9 @@
+# 0.4.0
+* Add link to flag the question in a Smokey message
+* Looks OK on mobile
+* add button to open MetaSmoke
+* ➖ 🐛s
+
 # 0.3.0
 * Open links in default browser
 * Update GasMask to use a SVG image
