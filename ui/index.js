@@ -9,8 +9,13 @@ setTimeout(() => {
     // open links externally by default
     $(document).on('click', 'a[href]', function (event) {
       if (!event.isDefaultPrevented()) {
-        event.preventDefault()
-        shell.openExternal(this.href)
+        if (this.hostname === 'm.erwaysoftware.com') {
+          event.preventDefault()
+          window.open(this.href)
+        } else {
+          event.preventDefault()
+          shell.openExternal(this.href)
+        }
       }
     })
     // metasmoke popup
@@ -25,7 +30,7 @@ setTimeout(() => {
         border: 'none',
         background: 'transparent',
         color: 'white'
-      }).text('Open MetaSmoke').click(openMetaSmoke)
+      }).text('metasmoke').append($('<code> ↗</code>').css('font-family', 'Fira Code, Fira Mono, monospace')).click(openMetaSmoke)
     )
     $('head').append($('<style>').text(require('./styles')))
     let _ms
