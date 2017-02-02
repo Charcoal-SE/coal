@@ -9,9 +9,25 @@ module.exports = `
 }
 #input {
   resize: none;
+}/*
+#header {
+  -webkit-app-region: drag;
 }
-/* buttons */
+#header .variant {
+  padding-left: 75px;
+  box-sizing: border-box;
+}*/
 #header button {
   cursor: pointer;
 }
 `.trim()
+
+/* button colors
+green
+bg 16% 79% 25%
+border 18% 68% 19%
+border disabled 82% x3
+disabled 87% x3
+
+red bg 100% 38% 34%
+*/
