@@ -1,7 +1,8 @@
 # 0.4.0
 * Add link to flag the question in a Smokey message
+* Let FDSC load before clicking “flag”
 * Looks OK on mobile
-* add button to open MetaSmoke
+* Add button to open MetaSmoke
 * ➖ 🐛s
 
 # 0.3.0
