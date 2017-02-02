@@ -25,8 +25,10 @@ const EVENTS = {
   userMerged: 30,
   userNameChanged: 34
 }
+const SMOKEY_RE = /\[ <a[^>]+>SmokeDetector<\/a>(?: \| <a[^>]+>MS<\/a>)? ] ([^:]+): <a href="([^"]+)">(.+?)<\/a> by (?:<a href="[^"]+\/u\/(\d+)">(.+?)<\/a>|a deleted user) on <code>([^<]+)<\/code>/
+
 function getMeta (message) {
-  const matches = /\[ <a[^>]+>SmokeDetector<\/a>(?: \| <a[^>]+>MS<\/a>)? ] ([^:]+): <a href="([^"]+)">(.+?)<\/a> by (?:<a href="[^"]+\/u\/(\d+)">(.+?)<\/a>|a deleted user) on <code>([^<]+)<\/code>/.exec(message)
+  const matches = SMOKEY_RE.exec(message)
   if (!matches) {
     return null
   }
@@ -41,6 +43,7 @@ function getMeta (message) {
     site
   }
 }
+
 const win = require('electron').remote.getCurrentWindow()
 const app = require('electron').remote.app
 const Notification = window.Notification
@@ -54,8 +57,9 @@ const clearBadge = () => app.dock.setBadge('')
 win.on('focus', clearBadge)
 window.addEventListener('beforeunload', () => win.removeListener('focus', clearBadge))
 
-module.exports = event => {
+exports = module.exports = event => {
   if (event.event_type === EVENTS.messagePosted) {
+    addButtons()
     if (!win.isFocused()) {
       app.dock.setBadge((+app.dock.getBadge()) + 1 + '')
       app.dock.bounce()
@@ -74,4 +78,31 @@ module.exports = event => {
       }
     }
   }
+}
+
+exports.addButtons = addButtons
+
+function addButtons () {
+  setTimeout(() => {
+    const $ = window.jQuery
+    $('.message').each((i, el) => {
+      const $el = $(el)
+      const message = getMeta($el.find('.content').html())
+      if (message && !$el.find('.meta .openMS').length) {
+        $el.find('.meta').prepend('\xA0\xA0').prepend(
+          $('<a>')
+            .attr('href', 'javascript:void 0')
+            .addClass('openMS')
+            .text('Flag it!')
+            .click(() => {
+              require('./popup')(message.url, () => $el.find('.meta .openMS').css({
+                color: 'gray',
+                pointerEvents: 'none'
+              }).text('Deleted!'))
+              return false
+            })
+        )
+      }
+    })
+  }, 1000)
 }

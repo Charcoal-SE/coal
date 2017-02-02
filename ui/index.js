@@ -41,6 +41,7 @@ setTimeout(() => {
         _ms.focus()
       }
     }
+    handle.addButtons()
   })
 })
 
