@@ -3,18 +3,20 @@ const clickFlagLink = $ => {
   if (window.location.href === 'data:text/html,chromewebdata') {
     window.close()
   }
-  if (!window.location.hash.length) {
-    // Q
-    $('#question .flag-post-link').click()
-  } else {
-    // A
-    const $link = $(`#answer-${window.location.hash.slice(1)} .flag-post-link`)
-    $link.click()
-    if (!$link.length) {
-      window.alert('This answer has already been deleted!')
-      window.close()
+  setTimeout(() => {
+    if (!window.location.hash.length) {
+      // Q
+      $('#question .flag-post-link').click()
+    } else {
+      // A
+      const $link = $(`#answer-${window.location.hash.slice(1)} .flag-post-link`)
+      $link.click()
+      if (!$link.length) {
+        window.alert('This answer has already been deleted!')
+        window.close()
+      }
     }
-  }
+  }, 100) // let FDSC load.
 }
 const onLoad = (f) => (() => {
   const _f = $$f // eslint-disable-line
