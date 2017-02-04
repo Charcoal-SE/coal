@@ -1,8 +1,16 @@
+# 0.5.0
+* ✨ metasmoke website now has the navbar as the window’s titlebar
+* Add Glorfindel’s autoflagging userscript to the chat window
+* Fix bug with closing then reopening metasmoke window
+* Get the userscripts live from RawGit, instead of copy-pasting them.
+* Open external metasmoke links in the default browser
+* Let you actually read the post before opening the flag dialog.
+
 # 0.4.0
 * Add link to flag the question in a Smokey message
 * Let FDSC load before clicking “flag”
 * Looks OK on mobile
-* Add button to open MetaSmoke
+* Add button to open metasmoke
 * ➖ 🐛s
 
 # 0.3.0
