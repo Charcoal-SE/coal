@@ -16,6 +16,9 @@
 * Fix external links in metasmoke
 * Open \*.json in the default browser in metasmoke
 
+## 0.5.4
+* Fix external links in metasmoke, for real.
+
 # 0.4.0
 * Add link to flag the question in a Smokey message
 * Let FDSC load before clicking “flag”
