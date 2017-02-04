@@ -1,7 +1,9 @@
+const { shell, remote: { BrowserWindow } } = require('electron')
+const path = require('path')
+
 const handle = require('./messages')
 
 setTimeout(() => {
-  const { shell } = require('electron')
   window.addEventListener('load', () => {
     const $ = window.jQuery
     // open links externally by default
@@ -32,9 +34,27 @@ setTimeout(() => {
     )
     $('head').append($('<style>').text(require('./styles')))
     let _ms
+    window.addEventListener('beforeunload', () => {
+      _ms && _ms.close()
+    })
     function openMetaSmoke () {
+      if (_ms && _ms.closed) {
+        _ms = null
+      }
       if (!_ms) {
-        _ms = window.open('https://metasmoke.erwaysoftware.com')
+        _ms = new BrowserWindow({
+          titleBarStyle: 'hidden-inset',
+          width: 1100,
+          webPreferences: {
+            preload: path.resolve('ui/ms/preload.js'),
+            nodeIntegration: false
+          }
+        })
+        _ms.once('closed', () => {
+          _ms = null
+        })
+        _ms.webContents.openDevTools()
+        _ms.loadURL('https://metasmoke.erwaysoftware.com')
       } else {
         _ms.focus()
       }

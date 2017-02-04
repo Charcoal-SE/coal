@@ -1,0 +1,121 @@
+.turbolinks-progress-bar {
+  top: calc($$navHeightpx - 2px);
+  height: 2px;
+}
+
+/*
+** ███████  ██████   ██████  ████████ ███████ ██████
+** ██      ██    ██ ██    ██    ██    ██      ██   ██
+** █████   ██    ██ ██    ██    ██    █████   ██████
+** ██      ██    ██ ██    ██    ██    ██      ██   ██
+** ██       ██████   ██████     ██    ███████ ██   ██
+*/
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  z-index: 1000;
+}
+.footer br {
+  display: none;
+}
+.footer p {
+  margin: 0;
+}
+body {
+  margin-top: calc($$navHeightpx + 20px);
+}
+.col-md-10 {
+  margin-bottom: 60px;
+}
+.profiler-results {
+  top: $$navHeightpx !important;
+}
+
+/*
+** ███    ██  █████  ██    ██ ██████   █████  ██████
+** ████   ██ ██   ██ ██    ██ ██   ██ ██   ██ ██   ██
+** ██ ██  ██ ███████ ██    ██ ██████  ███████ ██████
+** ██  ██ ██ ██   ██  ██  ██  ██   ██ ██   ██ ██   ██
+** ██   ████ ██   ██   ████   ██████  ██   ██ ██   ██
+*/
+
+.navbar {
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+  width: 100%;
+  top: 0;
+  min-height: $$navHeightpx;
+  height: $$navHeightpx;
+  position: fixed;
+}
+.plat-darwin .navbar {
+  padding-left: 75px;
+}
+
+.navbar-brand {
+  padding: 0 15px;
+  height: $$navHeightpx;
+  display: inline-flex;
+  align-items: center;
+}
+.navbar .nav > li {
+  height: $$navHeightpx;
+  display: inline-flex;
+  align-items: stretch;
+}
+.navbar .nav > li > a {
+  cursor: default;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 15px;
+}
+.navbar .nav > li.active {
+  background-color: #e7e7e7;
+}
+
+#search {
+  height: 25px;
+  padding: 2px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+
+/*
+** ███████ ████████  █████  ████████ ██    ██ ███████
+** ██         ██    ██   ██    ██    ██    ██ ██
+** ███████    ██    ███████    ██    ██    ██ ███████
+**      ██    ██    ██   ██    ██    ██    ██      ██
+** ███████    ██    ██   ██    ██     ██████  ███████
+*/
+
+
+.navbar .status-good a,
+.navbar .status-warning a,
+.navbar .status-critical a {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  background-color: transparent !important;
+}
+
+.navbar .nav > li.status-good {
+  background-color: hsla(120, 100%, 25%, 0.25);
+}
+.navbar .nav > li.status-warning {
+  background-color: hsla(39, 100%, 50%, 0.25);
+}
+.navbar .nav > li.status-critical {
+  background-color: hsla(0, 100%, 50%, 0.25);
+}
+.navbar .nav > li.active.status-good {
+  background-color: hsla(120, 100%, 25%, 0.4);
+}
+.navbar .nav > li.active.status-warning {
+  background-color: hsla(39, 100%, 50%, 0.4);
+}
+.navbar .nav > li.active.status-critical {
+  background-color: hsla(0, 100%, 50%, 0.4);
+}
