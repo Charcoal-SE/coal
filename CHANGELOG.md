@@ -7,6 +7,8 @@
 * Let you actually read the post before opening the flag dialog.
 ## 0.5.1
 * 😞 Don’t open the DevTools automatically.
+## 0.5.2
+* 😞😞 Stop the navbar from wrapping at the default size.
 
 # 0.4.0
 * Add link to flag the question in a Smokey message
