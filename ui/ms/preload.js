@@ -15,7 +15,7 @@ setTimeout(() => {
     })
     $(document).on('click', 'a[href]', event => {
       if (!event.isDefaultPrevented()) {
-        if (event.target.host.indexOf(window.location.host) === -1) {
+        if (event.target.host.indexOf(window.location.host) === -1 || event.target.href.endsWith('.json')) {
           event.preventDefault()
           shell.openExternal(event.target.href)
         }
