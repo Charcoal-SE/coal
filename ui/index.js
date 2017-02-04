@@ -53,7 +53,6 @@ setTimeout(() => {
         _ms.once('closed', () => {
           _ms = null
         })
-        _ms.webContents.openDevTools()
         _ms.loadURL('https://metasmoke.erwaysoftware.com')
       } else {
         _ms.focus()

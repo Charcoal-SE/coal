@@ -5,6 +5,8 @@
 * Get the userscripts live from RawGit, instead of copy-pasting them.
 * Open external metasmoke links in the default browser
 * Let you actually read the post before opening the flag dialog.
+## 0.5.1
+* 😞 Don’t open the DevTools automatically.
 
 # 0.4.0
 * Add link to flag the question in a Smokey message
