@@ -76,6 +76,10 @@ body {
   background-color: #e7e7e7;
 }
 
+.navbar li.history-nav a {
+  padding: 0 7px;
+}
+
 #search {
   height: 25px;
   padding: 2px 10px;
