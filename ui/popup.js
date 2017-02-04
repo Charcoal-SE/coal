@@ -16,7 +16,7 @@ const clickFlagLink = $ => {
         window.close()
       }
     }
-  }, 100) // let FDSC load.
+  }, 1000)
 }
 const onLoad = (f) => (() => {
   const _f = $$f // eslint-disable-line
