@@ -42,5 +42,13 @@ setTimeout(() => {
     handle.addButtons()
     $('#getmore, #getmore-mine').click(handle.addButtons)
     window.CHAT.addEventHandlerHook(handle)
+
+    function getUserScripts (...names) {
+      return ({ sha }) => names.map(name => $.getScript(`https://cdn.rawgit.com/Charcoal-SE/Userscripts/${sha}/${name}.user.js`))
+    }
+
+    $.get('https://api.github.com/repos/Charcoal-SE/Userscripts/commits/master', getUserScripts(
+      'autoflagging'
+    ))
   })
 })
