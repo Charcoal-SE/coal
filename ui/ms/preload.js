@@ -17,7 +17,7 @@ setTimeout(() => {
       if (!event.isDefaultPrevented()) {
         if (event.target.host.indexOf(window.location.host) === -1) {
           event.preventDefault()
-          shell.openExternal(this.href)
+          shell.openExternal(event.target.href)
         }
       }
     })
