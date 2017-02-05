@@ -53,14 +53,16 @@ setTimeout(() => {
 })
 console.log('Hi! If you don’t want desktop notifications from replies, set `localStorage.disableNotifications` to a non-empty string and reload (Cmd+R/Ctrl+R).')
 
-const clearBadge = () => app.dock.setBadge('')
-win.on('focus', clearBadge)
-window.addEventListener('beforeunload', () => win.removeListener('focus', clearBadge))
+if (app.dock) {
+  const clearBadge = () => app.dock.setBadge('')
+  win.on('focus', clearBadge)
+  window.addEventListener('beforeunload', () => win.removeListener('focus', clearBadge))
+}
 
 exports = module.exports = event => {
   if (event.event_type === EVENTS.messagePosted) {
     addButtons()
-    if (!win.isFocused()) {
+    if (!win.isFocused() && app.dock) {
       app.dock.setBadge((+app.dock.getBadge()) + 1 + '')
       app.dock.bounce()
     }

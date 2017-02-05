@@ -4,7 +4,9 @@ const path = require('path')
 let mainWindow
 
 function createWindow () {
-  app.dock.setIcon('./icon.png')
+  if (app.dock) {
+    app.dock.setIcon('./icon.png')
+  }
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
