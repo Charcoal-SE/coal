@@ -9,7 +9,7 @@ setTimeout(() => {
     // open links externally by default
     $(document).on('click', 'a[href]', function (event) {
       if (!event.isDefaultPrevented()) {
-        if (this.hostname === 'm.erwaysoftware.com') {
+        if (this.hostname === 'm.erwaysoftware.com' || this.textContent === 'logged in') {
           event.preventDefault()
           window.open(this.href)
         } else {
