@@ -95,10 +95,7 @@ function addButtons () {
             .addClass('openMS')
             .text('Flag it!')
             .click(() => {
-              require('./popup')(message.url, () => $el.find('.meta .openMS').css({
-                color: 'gray',
-                pointerEvents: 'none'
-              }).text('Deleted!'))
+              require('./popup')(message.url)
               return false
             })
         )

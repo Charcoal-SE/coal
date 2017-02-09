@@ -20,6 +20,10 @@ module.exports = `
 #header button {
   cursor: pointer;
 }
+
+.ai-deleted .openMS {
+  display: none;
+}
 `.trim()
 
 /* button colors
