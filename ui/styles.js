@@ -24,6 +24,10 @@ module.exports = `
 .ai-deleted .openMS {
   display: none;
 }
+
+pre, code {
+  font-family: Fira Code, Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace !important;
+}
 `.trim()
 
 /* button colors
