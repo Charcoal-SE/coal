@@ -9,18 +9,19 @@ setTimeout(() => {
     // open links externally by default
     $(document).on('click', 'a[href]', function (event) {
       if (!event.isDefaultPrevented()) {
-        if (this.hostname === 'm.erwaysoftware.com' || this.textContent === 'logged in') {
-          event.preventDefault()
+        event.preventDefault()
+        if (this.textContent === 'logged in') {
           window.open(this.href)
+        } else if (this.hostname === 'm.erwaysoftware.com') {
+          openMetaSmoke(this.href)
         } else {
-          event.preventDefault()
           shell.openExternal(this.href)
         }
       }
     })
     // metasmoke popup
     $('.fl').append(
-      $('<a>').addClass('button').text('metasmoke').click(openMetaSmoke)
+      $('<a>').addClass('button').text('metasmoke').click(() => openMetaSmoke())
     )
     $('.mob #header .variant').filter('.default, .select-message').find('.left').append(
       $('<button>').addClass('title').css({
@@ -37,7 +38,7 @@ setTimeout(() => {
     window.addEventListener('beforeunload', () => {
       _ms && _ms.close()
     })
-    function openMetaSmoke () {
+    function openMetaSmoke (url) {
       if (_ms && _ms.closed) {
         _ms = null
       }
@@ -53,7 +54,7 @@ setTimeout(() => {
         _ms.once('closed', () => {
           _ms = null
         })
-        _ms.loadURL('https://metasmoke.erwaysoftware.com')
+        _ms.loadURL(url || 'https://metasmoke.erwaysoftware.com')
       } else {
         _ms.focus()
       }
