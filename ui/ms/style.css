@@ -76,8 +76,17 @@ body {
   background-color: #e7e7e7;
 }
 
-.navbar li.history-nav a {
+.history-nav {
+  float: right;
+}
+.history-nav a {
+  color: #777;
   padding: 0 7px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.history-nav a:hover {
+  color: #333;
 }
 
 #search {

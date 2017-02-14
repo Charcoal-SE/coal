@@ -22,10 +22,14 @@ setTimeout(() => {
       }
     })
     const onLoad = () => {
-      $('ul.navbar-right:not(.history-added)').prepend(
-        $('<li>').addClass('history-nav').append($('<a>').text('▶').attr('title', 'Go Forward')).click(window.history.forward)
-      ).prepend(
-        $('<li>').addClass('history-nav').append($('<a>').text('◀').attr('title', 'Go Back')).click(window.history.back)
+      $('.footer p:not(.history-added)').append(
+        $('<span/>').addClass('history-nav').append(
+          $('<a/>').addClass('glyphicon glyphicon-chevron-left').attr('title', 'Go Back').click(window.history.back)
+        ).append(
+          $('<a/>').addClass('glyphicon glyphicon-refresh').attr('title', 'Reload').click(() => window.history.go(0))
+        ).append(
+          $('<a/>').addClass('glyphicon glyphicon-chevron-right').attr('title', 'Go Forward').click(window.history.forward)
+        )
       ).addClass('history-added')
     }
     onLoad()
