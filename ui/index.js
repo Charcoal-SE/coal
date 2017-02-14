@@ -70,6 +70,7 @@ setTimeout(() => {
       )
     }
 
+    $.getScript('https://sechat.quickmediasolutions.com/js/chatstatus.js')
     getUserScripts(
       'autoflagging'
     )
