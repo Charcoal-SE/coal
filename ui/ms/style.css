@@ -90,6 +90,17 @@ body {
   .navbar .nav > li.active {
     background-color: #e7e7e7;
   }
+  .navbar-form {
+    margin: 0;
+    padding-right: 0;
+    margin-right: -15px;
+  }
+  .navbar #search {
+    height: calc(100% + 1px);
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
+  }
 }
 
 .history-nav {
