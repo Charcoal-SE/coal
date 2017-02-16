@@ -12,7 +12,7 @@ setTimeout(() => {
         event.preventDefault()
         if (this.textContent === 'logged in') {
           window.open(this.href)
-        } else if (this.hostname === 'm.erwaysoftware.com') {
+        } else if (this.hostname === 'm.erwaysoftware.com' || this.hostname === 'metasmoke.erwaysoftware.com') {
           openMetaSmoke(this.href)
         } else {
           shell.openExternal(this.href)
