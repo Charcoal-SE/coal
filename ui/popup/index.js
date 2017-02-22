@@ -5,6 +5,12 @@ const clickFlagLink = $ => {
   if (window.location.href === 'data:text/html,chromewebdata') {
     window.close()
   }
+  const _lP = $.fn.loadPopup
+  let _prom
+  $.fn.loadPopup = function () {
+    _prom = _lP.apply(this, arguments)
+    return _prom
+  }
   setTimeout(() => {
     if (!window.location.hash.length) {
       // Q
@@ -16,6 +22,10 @@ const clickFlagLink = $ => {
       if (!$link.length) {
         window.alert('This answer has already been deleted!')
         window.close()
+      } else {
+        _prom.then(function () {
+          $('[value="PostSpam"]').click()
+        })
       }
     }
   }, 1000)
