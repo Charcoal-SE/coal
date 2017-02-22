@@ -24,7 +24,7 @@ const clickFlagLink = $ => {
         window.close()
       } else {
         _prom.then(function () {
-          $('[value="PostSpam"]').click()
+          setTimeout(() => $('[value="PostSpam"]').click(), 250)
         })
       }
     }
