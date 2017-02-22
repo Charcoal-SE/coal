@@ -9,6 +9,9 @@
 * \<pre\> and \<code\> elements now use Fira Code (if you have it instaled)
 * Better message detection regex.
 
+## 0.6.1
+* Fixes crash due to misplaced image
+
 # 0.5.0
 * ✨ metasmoke website now has the navbar as the window’s titlebar
 * Add Glorfindel’s autoflagging userscript to the chat window
