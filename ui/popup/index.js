@@ -61,15 +61,7 @@ const injectStyles = String($ => {
 
 module.exports = (url, onDeleted = x => x) => {
   const _w = window.open(url)
-  _w.blur()
   _w.eval(`(${onLoad(addUserScripts)})()`)
   _w.eval(`(${onLoad(clickFlagLink)})()`)
   _w.eval(`(${onLoad(injectStyles)})()`)
-  setTimeout(() => {
-    if (_w.closed) {
-      onDeleted()
-    } else {
-      _w.focus()
-    }
-  }, 500)
 }
