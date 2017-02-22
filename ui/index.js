@@ -54,10 +54,10 @@ setTimeout(() => {
         _ms.once('closed', () => {
           _ms = null
         })
-        _ms.loadURL(url || 'https://metasmoke.erwaysoftware.com')
       } else {
         _ms.focus()
       }
+      _ms.loadURL(url || 'https://metasmoke.erwaysoftware.com')
     }
     handle.addButtons()
     $('#getmore, #getmore-mine').click(handle.addButtons)
