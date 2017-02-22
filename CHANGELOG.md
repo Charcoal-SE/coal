@@ -6,7 +6,7 @@
 * Nathan Osman’s [Stack Exchange Chat Status userscript](https://sechat.quickmediasolutions.com/static/index.html) is now installed.
 * The metasmoke browser looks fancier now.
 * coal now autoclicks the “spam” option when opening a post to flag.
-* \<pre\> and \<code\> elements now use Fira Code (if you have it instaled)
+* \<pre\> and \<code\> elements now use Fira Code (if you have it installed)
 * Better message detection regex.
 
 ## 0.6.1
