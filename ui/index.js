@@ -1,5 +1,6 @@
 const { shell, remote: { BrowserWindow } } = require('electron')
 const path = require('path')
+const fs = require('fs')
 
 const handle = require('./messages')
 
@@ -33,7 +34,7 @@ setTimeout(() => {
         color: 'white'
       }).text('metasmoke').append($('<code> ↗</code>').css('font-family', 'Fira Code, Fira Mono, monospace')).click(openMetaSmoke)
     )
-    $('head').append($('<style>').text(require('./styles')))
+    $('head').append($('<style>').text(fs.readFileSync('ui/style.css', 'utf8')))
     let _ms
     window.addEventListener('beforeunload', () => {
       _ms && _ms.close()
