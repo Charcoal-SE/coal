@@ -12,5 +12,5 @@ deploy:
     - dist/coal-linux-x64.zip
     - dist/coal-linux-armv7l.zip
   on:
-    branch: master
+    tags: true
     repo: Charcoal-SE/coal
