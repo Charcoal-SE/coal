@@ -1,3 +1,14 @@
+# 0.6.0
+* Binaries are now available thanks to Travis CI.
+  * If you can add support for building for Windows, please create a PR!
+* coal now works on Windows/Linux.
+* metasmoke reports are now opened in the fancy metasmoke browser
+* Nathan Osman’s [Stack Exchange Chat Status userscript](https://sechat.quickmediasolutions.com/static/index.html) is now installed.
+* The metasmoke browser looks fancier now.
+* coal now autoclicks the “spam” option when opening a post to flag.
+* \<pre\> and \<code\> elements now use Fira Code (if you have it instaled)
+* Better message detection regex.
+
 # 0.5.0
 * ✨ metasmoke website now has the navbar as the window’s titlebar
 * Add Glorfindel’s autoflagging userscript to the chat window
