@@ -175,7 +175,7 @@ function createWindow () {
     height: 600,
     webPreferences: {
       nodeIntegration: false,
-      preload: path.resolve('ui/index.js')
+      preload: path.resolve(__dirname, 'ui/index.js')
     }
   })
 

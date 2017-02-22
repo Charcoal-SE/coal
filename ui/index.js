@@ -34,7 +34,7 @@ setTimeout(() => {
         color: 'white'
       }).text('metasmoke').append($('<code> ↗</code>').css('font-family', 'Fira Code, Fira Mono, monospace')).click(openMetaSmoke)
     )
-    $('head').append($('<style>').text(fs.readFileSync('ui/style.css', 'utf8')))
+    $('head').append($('<style>').text(fs.readFileSync(path.resolve(__dirname, 'style.css'), 'utf8')))
     let _ms
     window.addEventListener('beforeunload', () => {
       _ms && _ms.close()
@@ -48,7 +48,7 @@ setTimeout(() => {
           titleBarStyle: 'hidden-inset',
           width: 1100,
           webPreferences: {
-            preload: path.resolve('ui/ms/preload.js'),
+            preload: path.resolve(__dirname, 'ms/preload.js'),
             nodeIntegration: false
           }
         })

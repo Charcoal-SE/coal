@@ -1,4 +1,5 @@
 const { shell } = require('electron')
+const path = require('path')
 const fs = require('fs')
 
 setTimeout(() => {
@@ -6,7 +7,7 @@ setTimeout(() => {
     const $ = window.jQuery
     const navHeight = 38
     $('html').addClass(`plat-${process.platform}`)
-    fs.readFile('ui/ms/style.css', 'utf8', (err, text) => {
+    fs.readFile(path.resolve(__dirname, 'style.css'), 'utf8', (err, text) => {
       if (err) {
         console.error(err)
         return

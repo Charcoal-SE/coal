@@ -1,3 +1,4 @@
+const path = require('path')
 const fs = require('fs')
 
 const clickFlagLink = $ => {
@@ -48,7 +49,7 @@ const onLoad = (f) => (() => {
 
 const addUserScripts = require('./user-scripts')
 
-var css = fs.readFileSync('ui/popup/style.css', 'utf8', (err, text) => {
+var css = fs.readFileSync(path.join(__dirname, 'style.css'), 'utf8', (err, text) => {
   if (err) {
     console.error(err)
     return
