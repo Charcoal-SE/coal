@@ -22,12 +22,19 @@ const clickFlagLink = $ => {
       if (!$link.length) {
         window.alert('This answer has already been deleted!')
         window.close()
-      } else {
-        _prom.then(function () {
-          setTimeout(() => $('[value="PostSpam"]').click(), 250)
-        })
       }
     }
+    _prom.then(function () {
+      const sel = '[value="PostSpam"]'
+      const clickSpam = () => {
+        if (!$(sel).length) {
+          setTimeout(clickSpam, 50)
+        } else {
+          $(sel).click()
+        }
+      }
+      clickSpam()
+    })
   }, 1000)
 }
 const onLoad = (f) => (() => {
