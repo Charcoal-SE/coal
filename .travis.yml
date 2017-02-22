@@ -1,0 +1,16 @@
+language: node_js
+node_js: '6'
+script: npm test && npm run build
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: GGte2EVURg2Rq+kyHcmdVsi9IpPNoU3mC66i8F/rwO/g1f0OWqv2oi64rYlf5tDmO/w2neb6oukzo7dThTaulWnOpuTADJl/Q8wvTVxjNQPiwvnARE+JmPXNnDHNvYqKZmw9JZERVtVQbmvLidpM3pMZMQ/tvqMCBg9RPhV1XXPMx8a4ZwoBdNPu9vbI2lAcqSQ3rbpt1zxNERksxLtkEav/PhYsMFaC7+1TBVqqK3HILmCmXsdCZefE4pMbxRLTltLAHUA/NcnVew+qohpV+jgjO5/im5KHTyGUKbWZ64ktXP0diId5+xyYMSeEU0A+FWYnesFkzW2gxkzuFqmhlH+XldB8HiKf48rj/iSdUeeLffH6iBPbYtxE6d6o4vD6bC+ufrgAmmG0Gjtak81EfYW7DgDfoQ8LavCT6IWjXN3WP5Jw/wAQdn2owqVeLlCxAMFF5GPKDo7wwbEwyHWcyeuO7UF85IqsZ5lOcMEGbAjFSsVacG3v9BIcM4ylO6nXY1ja09FfXX2hvD1ZnNS5UeowhXfjkI3+rcd0SdMp9RtJ6/c99oy5IBQJvuueIOkn7adNvTSWtXZT6vDwWXdpIpOMttJ3tE2kVf5EHBa52nD4CKW1Da6ZRXuP8/bi5fdvZKz6FfNQ9SLHyGe8jThaQjKWtU1v9TehKqJWepLUN4k=
+  file:
+    - dist/coal-darwin-x64.zip
+    - dist/coal-linux-ia32.zip
+    - dist/coal-linux-x64.zip
+    - dist/coal-linux-armv7l.zip
+  on:
+    branch: master
+    repo: Charcoal-SE/coal
