@@ -2,7 +2,7 @@ language: node_js
 node_js: '6'
 script:
   - npm test
-  - if [ ! -z $TRAVIS_TAG ]; then npm run build; fi
+  - if [ ! -z $TRAVIS_TAG ]; then npm run build; else echo [build skipped]; fi
 deploy:
   provider: releases
   skip_cleanup: true
