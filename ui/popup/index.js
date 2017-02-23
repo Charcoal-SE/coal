@@ -32,6 +32,7 @@ const clickFlagLink = $ => {
           setTimeout(clickSpam, 50)
         } else {
           $(sel).click()
+          $('.popup-submit').focus()
         }
       }
       clickSpam()
