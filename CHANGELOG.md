@@ -19,6 +19,10 @@
 ## 0.6.3
 * Fixes relative paths
 
+## 0.6.4
+* Fix “This answer has already been deleted!” when you don’t have an account
+* Remove code that causes flag window to flash when opened
+
 # 0.5.0
 * ✨ metasmoke website now has the navbar as the window’s titlebar
 * Add Glorfindel’s autoflagging userscript to the chat window
