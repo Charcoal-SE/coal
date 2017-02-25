@@ -13,7 +13,7 @@ test_script:
 build: off
 
 after_test:
-  - build-electron-app --plat win32 --arch all --compress
+  - npm run build-veyor
 
 deploy:
   on:

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "electron .",
     "test": "standard",
-    "build": "build-electron-app --plat darwin --arch all --compress && build-electron-app --plat linux --arch all --compress"
+    "build-travis": "build-electron-app --plat darwin --arch all --compress && build-electron-app --plat linux --arch all --compress",
+    "build-veyor": "build-electron-app --plat win32 --arch all --compress"
   },
   "author": "Jed Fox",
   "license": "ISC",
