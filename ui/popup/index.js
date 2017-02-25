@@ -18,12 +18,12 @@ const clickFlagLink = $ => {
       $('#question .flag-post-link').click()
     } else {
       // A
-      const $link = $(`#answer-${window.location.hash.slice(1)} .flag-post-link`)
-      $link.click()
-      if (!$link.length) {
+      const $answer = $(`#answer-${window.location.hash.slice(1)}`)
+      if (!$answer.length) {
         window.alert('This answer has already been deleted!')
         window.close()
       }
+      $answer.find('.flag-post-link').click()
     }
     _prom.then(function () {
       const sel = '[value="PostSpam"]'
@@ -31,8 +31,7 @@ const clickFlagLink = $ => {
         if (!$(sel).length) {
           setTimeout(clickSpam, 50)
         } else {
-          $(sel).click()
-          $('.popup-submit').focus()
+          $(sel).click().focus()
         }
       }
       clickSpam()
