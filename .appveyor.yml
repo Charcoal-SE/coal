@@ -10,6 +10,8 @@ test_script:
   - npm --version
   - npm test
 
+build: off
+
 after_build:
   - build-electron-app --plat win32 --arch all --compress
 
