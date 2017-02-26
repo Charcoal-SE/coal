@@ -16,7 +16,7 @@ setTimeout(() => {
     })
     $(document).on('click', 'a[href]', event => {
       if (!event.isDefaultPrevented()) {
-        if (event.currentTarget.host.indexOf(window.location.host) === -1 || event.currentTarget.href.endsWith('.json')) {
+        if ((event.currentTarget.host.indexOf(window.location.host) === -1 && event.currentTarget.href.indexOf('https://stackexchange.com/oauth') === -1) || event.currentTarget.href.endsWith('.json')) {
           event.preventDefault()
           shell.openExternal(event.currentTarget.href)
         }
