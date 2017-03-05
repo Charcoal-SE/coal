@@ -12,7 +12,7 @@ const clickFlagLink = $ => {
     _prom = _lP.apply(this, arguments)
     return _prom
   }
-  setTimeout(() => {
+  const f = () => {
     if (!window.location.hash.length) {
       // Q
       $('#question .flag-post-link').click()
@@ -36,7 +36,12 @@ const clickFlagLink = $ => {
       }
       clickSpam()
     })
-  }, 1000)
+  }
+  if (window.fdsc && window.fdsc.ready) {
+    f()
+  } else {
+    $(document).on('fdsc:ready', f)
+  }
 }
 const onLoad = (f) => (() => {
   const _f = $$f // eslint-disable-line no-undef
