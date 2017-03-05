@@ -55,10 +55,17 @@ setTimeout(() => {
         _ms.once('closed', () => {
           _ms = null
         })
+        _ms.loadURL(url || 'https://metasmoke.erwaysoftware.com')
       } else {
         _ms.focus()
+        _ms.webContents.executeJavaScript('(' + String(() => {
+          if (window.Turbolinks && window.Turbolinks.visit) {
+            window.Turbolinks.visit(url)
+          } else {
+            window.location.href = url
+          }
+        }).replace(/\burl\b/g, '"' + (url.replace(/"/g, '\\"') || '/') + '"') + ')()')
       }
-      _ms.loadURL(url || 'https://metasmoke.erwaysoftware.com')
     }
     handle.addButtons()
     $('#getmore, #getmore-mine').click(handle.addButtons)
