@@ -84,17 +84,17 @@ setTimeout(() => {
           resources: [],
           header: '\n' + sections[0].replace(/.+[\r\n]+/, '') + '//'
         }
-        let keyOverrides = {exclude: 'excludes', include: 'includes', match: 'matches', resource: 'resources', grant: 'grant'}
+        let arrayKeys = {exclude: 'excludes', include: 'includes', match: 'matches', resource: 'resources', grant: 'grant'}
 
         metaData.shift()
         metaData.forEach(row => {
           let split = row.trim().split(/ (.+)/)
           let key = split[0]
           let value = split[1].trim()
-          let altKey = keyOverrides[key]
+          let arrayKey = arrayKeys[key]
 
-          if (altKey) {
-            info[altKey].push(value)
+          if (arrayKey) {
+            info[arrayKey].push(value)
           } else {
             info[key] = value
           }
