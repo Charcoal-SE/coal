@@ -71,17 +71,56 @@ setTimeout(() => {
     $('#getmore, #getmore-mine').click(handle.addButtons)
     window.CHAT.addEventHandlerHook(handle)
 
+    function injectUserScript (scriptUrl) {
+      $.get(scriptUrl, data => {
+        let sections = data.split('// ==/UserScript==')
+        let metaData = sections[0].split('// @')
+        let code = sections[1]
+        let info = {
+          excludes: [],
+          includes: [],
+          matches: [],
+          grant: [],
+          resources: [],
+          header: '\n' + sections[0].replace(/.+[\r\n]+/, '') + '//'
+        }
+        let arrayKeys = {exclude: 'excludes', include: 'includes', match: 'matches', resource: 'resources', grant: 'grant'}
+
+        metaData.shift()
+        metaData.forEach(row => {
+          let split = row.trim().split(/ (.+)/)
+          let key = split[0]
+          let value = split[1].trim()
+          let arrayKey = arrayKeys[key]
+
+          if (arrayKey) {
+            info[arrayKey].push(value)
+          } else {
+            info[key] = value
+          }
+        })
+
+        window.GM_info = { }
+        window.GM_info[info.name] = info // A userscript will have to use `var cachedInfo = GM_info.script || GM_info["userscript name"];`
+
+        $('head').append(
+          $('<script />').text(code)
+        )
+      }, 'text')
+    }
+
     function getUserScripts (...names) {
       return $.get(
         'https://api.github.com/repos/Charcoal-SE/Userscripts/commits/master',
-        ({ sha }) => names.map(name => $.getScript(`https://cdn.rawgit.com/Charcoal-SE/Userscripts/${sha}/${name}.user.js`))
+        ({ sha }) => names.map(name => injectUserScript(`https://cdn.rawgit.com/Charcoal-SE/Userscripts/${sha}/${name}.user.js`))
       )
     }
 
-    $.getScript('https://sechat.quickmediasolutions.com/js/chatstatus.js')
     getUserScripts(
       'autoflagging',
       'fire/fire'
     )
+
+    $.getScript('https://sechat.quickmediasolutions.com/js/chatstatus.js')
   })
 })
