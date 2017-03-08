@@ -71,38 +71,42 @@ setTimeout(() => {
     $('#getmore, #getmore-mine').click(handle.addButtons)
     window.CHAT.addEventHandlerHook(handle)
 
-    function injectUserScript(scriptUrl) {
+    function injectUserScript (scriptUrl) {
       $.get(scriptUrl, data => {
-        let sections = data.split('\/\/ ==\/UserScript==');
-        let metaData = sections[0].split('\/\/ @');
-        let code = sections[1];
+        let sections = data.split('// ==/UserScript==')
+        let metaData = sections[0].split('// @')
+        let code = sections[1]
         let info = {
-          excludes: [], includes: [], matches: [], grant: [], resources: [],
-          header: "\n" + sections[0].replace(/.+[\r\n]+/, '') + "//"
-        };
-        let keyOverrides = {exclude: "excludes", include: "includes", match: "matches", resource: "resources", grant: "grant"};
+          excludes: [],
+          includes: [],
+          matches: [],
+          grant: [],
+          resources: [],
+          header: '\n' + sections[0].replace(/.+[\r\n]+/, '') + '//'
+        }
+        let keyOverrides = {exclude: 'excludes', include: 'includes', match: 'matches', resource: 'resources', grant: 'grant'}
 
-        metaData.shift();
+        metaData.shift()
         metaData.forEach(row => {
-          let split = row.trim().split(/ (.+)/);
-          let key = split[0];
-          let value = split[1].trim();
-          let altKey = keyOverrides[key];
+          let split = row.trim().split(/ (.+)/)
+          let key = split[0]
+          let value = split[1].trim()
+          let altKey = keyOverrides[key]
 
           if (altKey) {
-            info[altKey].push(value);
+            info[altKey].push(value)
           } else {
-            info[key] = value;
+            info[key] = value
           }
         });
 
-        window.GM_info = { };
-        GM_info[info.name] = info; // A userscript will have to use `var cachedInfo = GM_info.script || GM_info["userscript name"];`
+        window.GM_info = { }
+        window.GM_info[info.name] = info // A userscript will have to use `var cachedInfo = GM_info.script || GM_info["userscript name"];`
 
-        $("head").append(
-          $("<script />").text(code)
-        );
-      }, "text");
+        $('head').append(
+          $('<script />').text(code)
+        )
+      }, 'text')
     }
 
     function getUserScripts (...names) {
