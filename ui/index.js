@@ -98,7 +98,7 @@ setTimeout(() => {
           } else {
             info[key] = value
           }
-        });
+        })
 
         window.GM_info = { }
         window.GM_info[info.name] = info // A userscript will have to use `var cachedInfo = GM_info.script || GM_info["userscript name"];`
@@ -113,14 +113,14 @@ setTimeout(() => {
       return $.get(
         'https://api.github.com/repos/Charcoal-SE/Userscripts/commits/master',
         ({ sha }) => names.map(name => injectUserScript(`https://cdn.rawgit.com/Charcoal-SE/Userscripts/${sha}/${name}.user.js`))
-      );
+      )
     }
 
     getUserScripts(
       'autoflagging',
       'fire/fire'
-    );
+    )
 
-    $.getScript('https://sechat.quickmediasolutions.com/js/chatstatus.js');
+    $.getScript('https://sechat.quickmediasolutions.com/js/chatstatus.js')
   })
 })
