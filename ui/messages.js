@@ -71,7 +71,11 @@ exports = module.exports = event => {
           body: `${meta.site}: ${meta.reasons.join(', ')}`
         })
         notif.addEventListener('click', () => {
-          require('./popup')(meta.url)
+          if (window.fire) {
+            window.fire.openReportPopup(window.$('#message-' + event.message_id))
+          } else {
+            require('./popup')(meta.url)
+          }
         })
       } else {
         console.log('Bad message', event.content)
@@ -95,7 +99,11 @@ function addButtons () {
             .addClass('openMS')
             .text('Flag it!')
             .click(() => {
-              require('./popup')(message.url)
+              if (window.fire) {
+                window.fire.openReportPopup($el)
+              } else {
+                require('./popup')(message.url)
+              }
               return false
             })
         )
