@@ -8,7 +8,7 @@ setTimeout(() => {
   window.addEventListener('load', () => {
     const $ = window.jQuery
     // open links externally by default
-    $(document).on('click', 'a[href]', function (event) {
+    $(document).on('click', 'a[href]', event => {
       if (!event.isDefaultPrevented()) {
         event.preventDefault()
         if (this.textContent === 'logged in') {
@@ -104,7 +104,7 @@ setTimeout(() => {
         window.GM_info[info.name] = info // A userscript will have to use `var cachedInfo = GM_info.script || GM_info["userscript name"];`
 
         $('head').append(
-          $('<script />').text(code)
+          $('<script />').text(data)
         )
       }, 'text')
     }
