@@ -75,7 +75,6 @@ setTimeout(() => {
       $.get(scriptUrl, data => {
         let sections = data.split('// ==/UserScript==')
         let metaData = sections[0].split('// @')
-        let code = sections[1]
         let info = {
           excludes: [],
           includes: [],
