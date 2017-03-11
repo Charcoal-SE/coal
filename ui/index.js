@@ -8,7 +8,8 @@ setTimeout(() => {
   window.addEventListener('load', () => {
     const $ = window.jQuery
     // open links externally by default
-    $(document).on('click', 'a[href]', event => {
+    // uses a regular function because it needs the `this` value.
+    $(document).on('click', 'a[href]', function (event) {
       if (!event.isDefaultPrevented()) {
         event.preventDefault()
         if (this.textContent === 'logged in') {
