@@ -72,7 +72,7 @@ exports = module.exports = event => {
         })
         notif.addEventListener('click', () => {
           if (window.fire) {
-            window.fire.openReportPopup(window.$('#message-' + event.message_id))
+            (window.fire.openReportPopup || window.fire.openReportPopupForMessage)(window.$('#message-' + event.message_id))
           } else {
             require('./popup')(meta.url)
           }
@@ -100,7 +100,7 @@ function addButtons () {
             .text('Flag it!')
             .click(() => {
               if (window.fire) {
-                window.fire.openReportPopup($el)
+                (window.fire.openReportPopup || window.fire.openReportPopupForMessage)($el)
               } else {
                 require('./popup')(message.url)
               }
