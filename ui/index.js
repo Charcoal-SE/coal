@@ -117,7 +117,7 @@ setTimeout(() => {
     }
 
     getUserScripts(
-      'autoflagging',
+      'autoflagging/autoflagging',
       'fire/fire'
     )
 
