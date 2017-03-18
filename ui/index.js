@@ -100,7 +100,7 @@ setTimeout(() => {
           }
         })
 
-        window.GM_info = { }
+        window.GM_info = window.GM_info || {}
         window.GM_info[info.name] = info // A userscript will have to use `var cachedInfo = GM_info.script || GM_info["userscript name"];`
 
         $('head').append(
