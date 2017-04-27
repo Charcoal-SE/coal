@@ -82,9 +82,10 @@ setTimeout(() => {
           matches: [],
           grant: [],
           resources: [],
+          requires: [],
           header: '\n' + sections[0].replace(/.+[\r\n]+/, '') + '//'
         }
-        let arrayKeys = {exclude: 'excludes', include: 'includes', match: 'matches', resource: 'resources', grant: 'grant'}
+        let arrayKeys = {exclude: 'excludes', include: 'includes', match: 'matches', resource: 'resources', require: 'requires', grant: 'grant'}
 
         metaData.shift()
         metaData.forEach(row => {
@@ -100,14 +101,25 @@ setTimeout(() => {
           }
         })
 
+        let proms = []
+        info.requires.forEach(url => {
+          if (!injectUserScript._requires.has(url)) {
+            injectUserScript._requires.add(url)
+            proms.push($.getScript(url))
+          }
+        })
+
         window.GM_info = window.GM_info || {}
         window.GM_info[info.name] = info // A userscript will have to use `var cachedInfo = GM_info.script || GM_info["userscript name"];`
 
-        $('head').append(
-          $('<script />').text(data)
-        )
+        Promise.all(proms).then(() => {
+          $('head').append(
+            $('<script />').text(data)
+          )
+        })
       }, 'text')
     }
+    injectUserScript._requires = new Set()
 
     function getUserScripts (...names) {
       return $.get(
