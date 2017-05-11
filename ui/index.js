@@ -130,9 +130,10 @@ setTimeout(() => {
 
     getUserScripts(
       'autoflagging/autoflagging',
-      'fire/fire'
+      'fire/fire',
+      'sds/sds'
     )
-
-    $.getScript('https://sechat.quickmediasolutions.com/js/chatstatus.js')
+    // Breaks AIM: it wraps all of the text nodes in 2 <span>s
+    // $.getScript('https://sechat.quickmediasolutions.com/js/chatstatus.js')
   })
 })
